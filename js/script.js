@@ -14,4 +14,5 @@ window.addEventListener('DOMContentLoaded', function () {
           calc();
           forms();
           sliders();
+          
 });
