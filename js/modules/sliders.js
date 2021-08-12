@@ -1,20 +1,20 @@
-function sliders() {
-    // Sliders
+function sliders({container, slide, nextArrow, prewArrow, totalCounter, currentCounter, wrapper, field}) {
+
     let slideIndex = 1;
     let offset = 0;
-    const slides = document.querySelectorAll('.offer__slide'),
+    const slides = document.querySelectorAll(slide),
         // класс который определяет каждый слайд
-        slider = document.querySelector('.offer__slider'),
-        prev = document.querySelector('.offer__slider-prev'),
+        slider = document.querySelector(container),
+        prev = document.querySelector(prewArrow),
         // стрелочка назад
-        next = document.querySelector('.offer__slider-next'),
+        next = document.querySelector(nextArrow),
         // стрелочка вперед
-        total = document.querySelector('#total'),
-        current = document.querySelector('#current'),
+        total = document.querySelector(totalCounter),
+        current = document.querySelector(currentCounter),
         // определяет текущещ положение в слайдере
-        slidesWrapper = document.querySelector('.offer__slider-wrapper'),
+        slidesWrapper = document.querySelector(wrapper),
         // общая обертка слайдов
-        slidesField = document.querySelector('.offer__slider-inner'),
+        slidesField = document.querySelector(field),
         // поле с нашими слайдами
         width = window.getComputedStyle(slidesWrapper).width;
     // получим свойство с шириной объекта с уже примененными к нему стилями
@@ -214,4 +214,4 @@ function sliders() {
     // });
 }
 
-module.exports = sliders;
+export default sliders;

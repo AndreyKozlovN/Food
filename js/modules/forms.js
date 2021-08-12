@@ -1,6 +1,8 @@
-function forms() {
-        // Forms
-        const forms = document.querySelectorAll('form');
+import {closeModal, openModal} from './modal';
+import {postData} from '../services/services';
+
+function forms(formSelector, modalTimerId) {
+        const forms = document.querySelectorAll(formSelector);
 
         const message = {
             loading: 'img/form/spinner.svg',
@@ -12,18 +14,7 @@ function forms() {
             bindPostData(item);
         });    
         // async говорит что код асинхронный, await ставим перед той операцией которую надо дождаться
-        const postData = async (url, data) => {
-            const res = await fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-type': 'application/json'
-                },
-                body: data
-            });
-            return await res.json();
-            // возвращаем promise что бы его обработать
-        };
-        //посылаем запрос(fetch) и настраиваем его, получаем его и трансформируем в Json
+
         function bindPostData(form) {
             form.addEventListener('submit', (e) => {
                 e.preventDefault();
@@ -83,15 +74,15 @@ function forms() {
             const prevModalDialog = document.querySelector('.modal__dialog');
     
             prevModalDialog.classList.add('hide');
-            openModal();
+            openModal('.modal', modalTimerId);
     
             const thanksModal = document.createElement('div');
             thanksModal.classList.add('modal__dialog');
             thanksModal.innerHTML = `
-            <div class="modal__content">
-                <div class="modal__close" data-close>&times;</div>
-                <div class="modal__title">${message}</div>
-            </div>
+                <div class="modal__content">
+                    <div class="modal__close" data-close>&times;</div>
+                    <div class="modal__title">${message}</div>
+                </div>
             `;
     
             document.querySelector('.modal').append(thanksModal);
@@ -99,7 +90,7 @@ function forms() {
                 thanksModal.remove();
                 prevModalDialog.classList.add('show');
                 prevModalDialog.classList.remove('hide');
-                closeModal();
+                closeModal('.modal');
             }, 4000);
         }
         // fetch('http://localhost:3000/menu')
@@ -107,4 +98,4 @@ function forms() {
         // .then(res => console.log(res)); 
 }
 
-module.exports = forms;
+export default forms;

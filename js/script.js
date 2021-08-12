@@ -1,17 +1,31 @@
+import tabs from './modules/tabs';
+import modal from './modules/modal';
+import timer from './modules/timer';
+import cards from './modules/cards';
+import calc from './modules/calc';
+import forms from './modules/forms';
+import sliders from './modules/sliders';
+import {openModal} from './modules/modal';
+
 window.addEventListener('DOMContentLoaded', function () {
-    const tabs = require('./modules/tabs'),
-          modal = require('./modules/modal'),
-          timer = require('./modules/timer'),
-          cards = require('./modules/cards'),
-          calc = require('./modules/calc'),
-          forms = require('./modules/forms'),
-          sliders = require('./modules/sliders');
+    const modalTimerId = setTimeout(() => openModal('./modal', modalTimerId), 300000);
+    // через определенное время запустится стрелочная функция, которая внтри себя запустит openModal()
+
+    tabs('.tabheader__item', '.tabcontent', '.tabheader__items', 'tabheader__item_active');
+    modal('[data-modal]', '.modal', modalTimerId);
+    timer('.timer', '2021-09-15');
+    cards();
+    calc();
+    forms('form', modalTimerId);
+    sliders({
+        container: '.offer__slider',
+        nextArrow: '.offer__slider-next',
+        prewArrow: '.offer__slider-prev',
+        slide: '.offer__slide',
+        totalCounter: '#total',
+        currentCounter: '#current',
+        wrapper: '.offer__slider-wrapper',
+        field: '.offer__slider-inner'
+    });
     
-          tabs();
-          modal();
-          timer();
-          cards();
-          calc();
-          forms();
-          sliders();
 });
