@@ -1,1 +1,3 @@
-Creating a project during training in "Udemy"
+Проект про питания 
+
+Javascript
